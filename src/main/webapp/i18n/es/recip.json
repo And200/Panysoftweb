@@ -1,0 +1,28 @@
+{
+  "panysoftApp": {
+    "recip": {
+      "home": {
+        "title": "Recips",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Recip",
+        "createOrEditLabel": "Crear o editar Recip",
+        "notFound": "Ningún Recips encontrado"
+      },
+      "created": "Un nuevo Recip ha sido creado con el identificador {{ param }}",
+      "updated": "Un Recip ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Recip ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Recip {{ id }}?"
+      },
+      "detail": {
+        "title": "Recip"
+      },
+      "id": "ID",
+      "nameRecip": "Name Recip",
+      "estimatedPricePreparation": "Estimated Price Preparation",
+      "amountProductUsed": "Amount Product Used",
+      "product": "Product",
+      "category": "Category"
+    }
+  }
+}

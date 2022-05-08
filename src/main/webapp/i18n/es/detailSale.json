@@ -1,0 +1,27 @@
+{
+  "panysoftApp": {
+    "detailSale": {
+      "home": {
+        "title": "Detail Sales",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Detail Sale",
+        "createOrEditLabel": "Crear o editar Detail Sale",
+        "notFound": "Ningún Detail Sales encontrado"
+      },
+      "created": "Un nuevo Detail Sale ha sido creado con el identificador {{ param }}",
+      "updated": "Un Detail Sale ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Detail Sale ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Detail Sale {{ id }}?"
+      },
+      "detail": {
+        "title": "Detail Sale"
+      },
+      "id": "ID",
+      "productAmount": "Product Amount",
+      "purchaseReceipt": "Purchase Receipt",
+      "productElaborated": "Product Elaborated",
+      "presentation": "Presentation"
+    }
+  }
+}

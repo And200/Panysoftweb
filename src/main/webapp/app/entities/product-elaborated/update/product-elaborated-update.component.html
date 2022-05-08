@@ -1,0 +1,146 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="panysoft-product-elaborated-heading"
+        data-cy="ProductElaboratedCreateUpdateHeading"
+        panysoftTranslate="panysoftApp.productElaborated.home.createOrEditLabel"
+      >
+        Create or edit a Product Elaborated
+      </h2>
+
+      <div>
+        <panysoft-alert-error></panysoft-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" panysoftTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.productElaborated.amountProduced" for="field_amountProduced"
+            >Amount Produced</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="amountProduced"
+            id="field_amountProduced"
+            data-cy="amountProduced"
+            formControlName="amountProduced"
+          />
+          <div
+            *ngIf="
+              editForm.get('amountProduced')!.invalid && (editForm.get('amountProduced')!.dirty || editForm.get('amountProduced')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('amountProduced')?.errors?.required"
+              panysoftTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('amountProduced')?.errors?.number"
+              panysoftTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.productElaborated.productName" for="field_productName"
+            >Product Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="productName"
+            id="field_productName"
+            data-cy="productName"
+            formControlName="productName"
+          />
+          <div *ngIf="editForm.get('productName')!.invalid && (editForm.get('productName')!.dirty || editForm.get('productName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('productName')?.errors?.required"
+              panysoftTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('productName')?.errors?.maxlength"
+              panysoftTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 30 }"
+            >
+              This field cannot be longer than 30 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.productElaborated.buyPrice" for="field_buyPrice">Buy Price</label>
+          <input type="number" class="form-control" name="buyPrice" id="field_buyPrice" data-cy="buyPrice" formControlName="buyPrice" />
+          <div *ngIf="editForm.get('buyPrice')!.invalid && (editForm.get('buyPrice')!.dirty || editForm.get('buyPrice')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('buyPrice')?.errors?.required"
+              panysoftTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('buyPrice')?.errors?.number"
+              panysoftTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.productElaborated.category" for="field_category">Category</label>
+          <select class="form-control" id="field_category" data-cy="category" name="category" formControlName="category">
+            <option *ngIf="!editForm.get('category')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="categoryOption.id === editForm.get('category')!.value?.id ? editForm.get('category')!.value : categoryOption"
+              *ngFor="let categoryOption of categoriesSharedCollection; trackBy: trackCategoryById"
+            >
+              {{ categoryOption.nameCategory }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['category'])!.invalid && (editForm.get(['category'])!.dirty || editForm.get(['category'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['category'])?.errors?.required"
+            panysoftTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

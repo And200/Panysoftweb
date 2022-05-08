@@ -1,0 +1,27 @@
+{
+  "panysoftApp": {
+    "presentation": {
+      "home": {
+        "title": "Presentations",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Presentation",
+        "createOrEditLabel": "Crear o editar Presentation",
+        "notFound": "Ningún Presentations encontrado"
+      },
+      "created": "Un nuevo Presentation ha sido creado con el identificador {{ param }}",
+      "updated": "Un Presentation ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Presentation ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Presentation {{ id }}?"
+      },
+      "detail": {
+        "title": "Presentation"
+      },
+      "id": "ID",
+      "presentation": "Presentation",
+      "detailSale": "Detail Sale",
+      "product": "Product",
+      "measureUnit": "Measure Unit"
+    }
+  }
+}

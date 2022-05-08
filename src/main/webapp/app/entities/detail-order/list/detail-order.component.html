@@ -1,0 +1,98 @@
+<div>
+  <h2 id="page-heading" data-cy="DetailOrderHeading">
+    <span panysoftTranslate="panysoftApp.detailOrder.home.title">Detail Orders</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span panysoftTranslate="panysoftApp.detailOrder.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-detail-order"
+        [routerLink]="['/detail-order/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span panysoftTranslate="panysoftApp.detailOrder.home.createLabel"> Create a new Detail Order </span>
+      </button>
+    </div>
+  </h2>
+
+  <panysoft-alert-error></panysoft-alert-error>
+
+  <panysoft-alert></panysoft-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="detailOrders?.length === 0">
+    <span panysoftTranslate="panysoftApp.detailOrder.home.notFound">No detailOrders found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="detailOrders && detailOrders.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span panysoftTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.detailOrder.quantityOrdered">Quantity Ordered</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.detailOrder.date">Date</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.detailOrder.invoiceNumber">Invoice Number</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.detailOrder.productOrdered">Product Ordered</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.detailOrder.pricePayment">Price Payment</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.detailOrder.provider">Provider</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.detailOrder.orderPlaced">Order Placed</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let detailOrder of detailOrders; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/detail-order', detailOrder.id, 'view']">{{ detailOrder.id }}</a>
+          </td>
+          <td>{{ detailOrder.quantityOrdered }}</td>
+          <td>{{ detailOrder.date | formatMediumDatetime }}</td>
+          <td>{{ detailOrder.invoiceNumber }}</td>
+          <td>{{ detailOrder.productOrdered }}</td>
+          <td>{{ detailOrder.pricePayment }}</td>
+          <td>
+            <div *ngIf="detailOrder.provider">
+              <a [routerLink]="['/provider', detailOrder.provider?.id, 'view']">{{ detailOrder.provider?.name }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="detailOrder.orderPlaced">
+              <a [routerLink]="['/order-placed', detailOrder.orderPlaced?.id, 'view']">{{ detailOrder.orderPlaced?.orderPlacedState }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/detail-order', detailOrder.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" panysoftTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/detail-order', detailOrder.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" panysoftTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(detailOrder)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" panysoftTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

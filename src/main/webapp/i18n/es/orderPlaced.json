@@ -1,0 +1,25 @@
+{
+  "panysoftApp": {
+    "orderPlaced": {
+      "home": {
+        "title": "Order Placeds",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Order Placed",
+        "createOrEditLabel": "Crear o editar Order Placed",
+        "notFound": "Ningún Order Placeds encontrado"
+      },
+      "created": "Un nuevo Order Placed ha sido creado con el identificador {{ param }}",
+      "updated": "Un Order Placed ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Order Placed ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Order Placed {{ id }}?"
+      },
+      "detail": {
+        "title": "Order Placed"
+      },
+      "id": "ID",
+      "orderPlacedState": "Order Placed State",
+      "detailOrder": "Detail Order"
+    }
+  }
+}

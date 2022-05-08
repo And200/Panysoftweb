@@ -1,0 +1,44 @@
+{
+  "applications": ["panysoft"],
+  "changelogDate": "20220507225137",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "detail_sale",
+  "fields": [
+    {
+      "fieldName": "productAmount",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "DetailSale",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "purchaseReceipt",
+      "otherEntityRelationshipName": "detailSale",
+      "relationshipName": "purchaseReceipt",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "productName",
+      "otherEntityName": "productElaborated",
+      "otherEntityRelationshipName": "detailSale",
+      "relationshipName": "productElaborated",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "presentation",
+      "otherEntityName": "presentation",
+      "otherEntityRelationshipName": "detailSale",
+      "relationshipName": "presentation",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "no"
+}

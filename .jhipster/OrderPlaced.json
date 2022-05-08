@@ -1,0 +1,29 @@
+{
+  "applications": ["panysoft"],
+  "changelogDate": "20220507225937",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "order_placed",
+  "fields": [
+    {
+      "fieldName": "orderPlacedState",
+      "fieldType": "StateOrder",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "DELIVERED (ENTREGADO),UNDELIVERED (NOENTREGADO)"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "OrderPlaced",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "detailOrder",
+      "otherEntityRelationshipName": "orderPlaced",
+      "relationshipName": "detailOrder",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

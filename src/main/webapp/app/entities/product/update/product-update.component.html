@@ -1,0 +1,146 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="panysoft-product-heading" data-cy="ProductCreateUpdateHeading" panysoftTranslate="panysoftApp.product.home.createOrEditLabel">
+        Create or edit a Product
+      </h2>
+
+      <div>
+        <panysoft-alert-error></panysoft-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" panysoftTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.product.productDetail" for="field_productDetail">Product Detail</label>
+          <input
+            type="text"
+            class="form-control"
+            name="productDetail"
+            id="field_productDetail"
+            data-cy="productDetail"
+            formControlName="productDetail"
+          />
+          <div
+            *ngIf="
+              editForm.get('productDetail')!.invalid && (editForm.get('productDetail')!.dirty || editForm.get('productDetail')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('productDetail')?.errors?.required"
+              panysoftTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('productDetail')?.errors?.maxlength"
+              panysoftTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.product.productName" for="field_productName">Product Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="productName"
+            id="field_productName"
+            data-cy="productName"
+            formControlName="productName"
+          />
+          <div *ngIf="editForm.get('productName')!.invalid && (editForm.get('productName')!.dirty || editForm.get('productName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('productName')?.errors?.required"
+              panysoftTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('productName')?.errors?.maxlength"
+              panysoftTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.product.provider" for="field_provider">Provider</label>
+          <select class="form-control" id="field_provider" data-cy="provider" name="provider" formControlName="provider">
+            <option *ngIf="!editForm.get('provider')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="providerOption.id === editForm.get('provider')!.value?.id ? editForm.get('provider')!.value : providerOption"
+              *ngFor="let providerOption of providersSharedCollection; trackBy: trackProviderById"
+            >
+              {{ providerOption.name }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['provider'])!.invalid && (editForm.get(['provider'])!.dirty || editForm.get(['provider'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['provider'])?.errors?.required"
+            panysoftTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.product.presentation" for="field_presentation">Presentation</label>
+          <select class="form-control" id="field_presentation" data-cy="presentation" name="presentation" formControlName="presentation">
+            <option *ngIf="!editForm.get('presentation')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="
+                presentationOption.id === editForm.get('presentation')!.value?.id ? editForm.get('presentation')!.value : presentationOption
+              "
+              *ngFor="let presentationOption of presentationsSharedCollection; trackBy: trackPresentationById"
+            >
+              {{ presentationOption.presentation }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['presentation'])!.invalid && (editForm.get(['presentation'])!.dirty || editForm.get(['presentation'])!.touched)
+          "
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['presentation'])?.errors?.required"
+            panysoftTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

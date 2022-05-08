@@ -1,0 +1,43 @@
+{
+  "applications": ["panysoft"],
+  "changelogDate": "20220507225837",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "presentation",
+  "fields": [
+    {
+      "fieldName": "presentation",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required", "unique"],
+      "fieldValidateRulesMaxlength": "30"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Presentation",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "detailSale",
+      "otherEntityRelationshipName": "presentation",
+      "relationshipName": "detailSale",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "product",
+      "otherEntityRelationshipName": "presentation",
+      "relationshipName": "product",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nameUnit",
+      "otherEntityName": "measureUnit",
+      "otherEntityRelationshipName": "presentation",
+      "relationshipName": "measureUnit",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "no"
+}

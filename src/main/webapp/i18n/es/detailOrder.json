@@ -1,0 +1,30 @@
+{
+  "panysoftApp": {
+    "detailOrder": {
+      "home": {
+        "title": "Detail Orders",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Detail Order",
+        "createOrEditLabel": "Crear o editar Detail Order",
+        "notFound": "Ningún Detail Orders encontrado"
+      },
+      "created": "Un nuevo Detail Order ha sido creado con el identificador {{ param }}",
+      "updated": "Un Detail Order ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Detail Order ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Detail Order {{ id }}?"
+      },
+      "detail": {
+        "title": "Detail Order"
+      },
+      "id": "ID",
+      "quantityOrdered": "Quantity Ordered",
+      "date": "Date",
+      "invoiceNumber": "Invoice Number",
+      "productOrdered": "Product Ordered",
+      "pricePayment": "Price Payment",
+      "provider": "Provider",
+      "orderPlaced": "Order Placed"
+    }
+  }
+}

@@ -1,0 +1,139 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="panysoft-detail-sale-heading"
+        data-cy="DetailSaleCreateUpdateHeading"
+        panysoftTranslate="panysoftApp.detailSale.home.createOrEditLabel"
+      >
+        Create or edit a Detail Sale
+      </h2>
+
+      <div>
+        <panysoft-alert-error></panysoft-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" panysoftTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.detailSale.productAmount" for="field_productAmount"
+            >Product Amount</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="productAmount"
+            id="field_productAmount"
+            data-cy="productAmount"
+            formControlName="productAmount"
+          />
+          <div
+            *ngIf="
+              editForm.get('productAmount')!.invalid && (editForm.get('productAmount')!.dirty || editForm.get('productAmount')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('productAmount')?.errors?.required"
+              panysoftTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('productAmount')?.errors?.number"
+              panysoftTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.detailSale.productElaborated" for="field_productElaborated"
+            >Product Elaborated</label
+          >
+          <select
+            class="form-control"
+            id="field_productElaborated"
+            data-cy="productElaborated"
+            name="productElaborated"
+            formControlName="productElaborated"
+          >
+            <option *ngIf="!editForm.get('productElaborated')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="
+                productElaboratedOption.id === editForm.get('productElaborated')!.value?.id
+                  ? editForm.get('productElaborated')!.value
+                  : productElaboratedOption
+              "
+              *ngFor="let productElaboratedOption of productElaboratedsSharedCollection; trackBy: trackProductElaboratedById"
+            >
+              {{ productElaboratedOption.productName }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['productElaborated'])!.invalid &&
+            (editForm.get(['productElaborated'])!.dirty || editForm.get(['productElaborated'])!.touched)
+          "
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['productElaborated'])?.errors?.required"
+            panysoftTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.detailSale.presentation" for="field_presentation">Presentation</label>
+          <select class="form-control" id="field_presentation" data-cy="presentation" name="presentation" formControlName="presentation">
+            <option *ngIf="!editForm.get('presentation')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="
+                presentationOption.id === editForm.get('presentation')!.value?.id ? editForm.get('presentation')!.value : presentationOption
+              "
+              *ngFor="let presentationOption of presentationsSharedCollection; trackBy: trackPresentationById"
+            >
+              {{ presentationOption.presentation }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['presentation'])!.invalid && (editForm.get(['presentation'])!.dirty || editForm.get(['presentation'])!.touched)
+          "
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['presentation'])?.errors?.required"
+            panysoftTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

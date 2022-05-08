@@ -1,0 +1,26 @@
+{
+  "panysoftApp": {
+    "inventory": {
+      "home": {
+        "title": "Inventories",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Inventory",
+        "createOrEditLabel": "Crear o editar Inventory",
+        "notFound": "Ningún Inventories encontrado"
+      },
+      "created": "Un nuevo Inventory ha sido creado con el identificador {{ param }}",
+      "updated": "Un Inventory ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Inventory ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Inventory {{ id }}?"
+      },
+      "detail": {
+        "title": "Inventory"
+      },
+      "id": "ID",
+      "stocks": "Stocks",
+      "buyPrice": "Buy Price",
+      "product": "Product"
+    }
+  }
+}

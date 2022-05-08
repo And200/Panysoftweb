@@ -1,0 +1,29 @@
+{
+  "panysoftApp": {
+    "product": {
+      "home": {
+        "title": "Products",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Product",
+        "createOrEditLabel": "Crear o editar Product",
+        "notFound": "Ningún Products encontrado"
+      },
+      "created": "Un nuevo Product ha sido creado con el identificador {{ param }}",
+      "updated": "Un Product ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Product ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Product {{ id }}?"
+      },
+      "detail": {
+        "title": "Product"
+      },
+      "id": "ID",
+      "productDetail": "Product Detail",
+      "productName": "Product Name",
+      "inventory": "Inventory",
+      "recip": "Recip",
+      "provider": "Provider",
+      "presentation": "Presentation"
+    }
+  }
+}

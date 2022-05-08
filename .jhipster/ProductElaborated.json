@@ -1,0 +1,47 @@
+{
+  "applications": ["panysoft"],
+  "changelogDate": "20220507225237",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "product_elaborated",
+  "fields": [
+    {
+      "fieldName": "amountProduced",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "productName",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required", "unique"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "buyPrice",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ProductElaborated",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "detailSale",
+      "otherEntityRelationshipName": "productElaborated",
+      "relationshipName": "detailSale",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nameCategory",
+      "otherEntityName": "category",
+      "otherEntityRelationshipName": "productElaborated",
+      "relationshipName": "category",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "no"
+}

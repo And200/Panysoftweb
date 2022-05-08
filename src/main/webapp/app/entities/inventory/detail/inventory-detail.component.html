@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="inventory">
+      <h2 data-cy="inventoryDetailsHeading"><span panysoftTranslate="panysoftApp.inventory.detail.title">Inventory</span></h2>
+
+      <hr />
+
+      <panysoft-alert-error></panysoft-alert-error>
+
+      <panysoft-alert></panysoft-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span panysoftTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ inventory.id }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.inventory.stocks">Stocks</span></dt>
+        <dd>
+          <span>{{ inventory.stocks }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.inventory.buyPrice">Buy Price</span></dt>
+        <dd>
+          <span>{{ inventory.buyPrice }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.inventory.product">Product</span></dt>
+        <dd>
+          <div *ngIf="inventory.product">
+            <a [routerLink]="['/product', inventory.product?.id, 'view']">{{ inventory.product?.productName }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/inventory', inventory.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

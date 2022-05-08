@@ -1,0 +1,160 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="panysoft-purchase-receipt-heading"
+        data-cy="PurchaseReceiptCreateUpdateHeading"
+        panysoftTranslate="panysoftApp.purchaseReceipt.home.createOrEditLabel"
+      >
+        Create or edit a Purchase Receipt
+      </h2>
+
+      <div>
+        <panysoft-alert-error></panysoft-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" panysoftTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.purchaseReceipt.date" for="field_date">Date</label>
+          <div class="d-flex">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="datetime-local"
+              class="form-control"
+              name="date"
+              formControlName="date"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('date')!.invalid && (editForm.get('date')!.dirty || editForm.get('date')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('date')?.errors?.required"
+              panysoftTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('date')?.errors?.ZonedDateTimelocal"
+              panysoftTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.purchaseReceipt.totalSale" for="field_totalSale">Total Sale</label>
+          <input type="number" class="form-control" name="totalSale" id="field_totalSale" data-cy="totalSale" formControlName="totalSale" />
+          <div *ngIf="editForm.get('totalSale')!.invalid && (editForm.get('totalSale')!.dirty || editForm.get('totalSale')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('totalSale')?.errors?.required"
+              panysoftTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('totalSale')?.errors?.number"
+              panysoftTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.purchaseReceipt.employee" for="field_employee">Employee</label>
+          <select class="form-control" id="field_employee" data-cy="employee" name="employee" formControlName="employee">
+            <option *ngIf="!editForm.get('employee')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="employeeOption.id === editForm.get('employee')!.value?.id ? editForm.get('employee')!.value : employeeOption"
+              *ngFor="let employeeOption of employeesSharedCollection; trackBy: trackEmployeeById"
+            >
+              {{ employeeOption.id }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['employee'])!.invalid && (editForm.get(['employee'])!.dirty || editForm.get(['employee'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['employee'])?.errors?.required"
+            panysoftTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.purchaseReceipt.detailSale" for="field_detailSale">Detail Sale</label>
+          <select class="form-control" id="field_detailSale" data-cy="detailSale" name="detailSale" formControlName="detailSale">
+            <option *ngIf="!editForm.get('detailSale')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="
+                detailSaleOption.id === editForm.get('detailSale')!.value?.id ? editForm.get('detailSale')!.value : detailSaleOption
+              "
+              *ngFor="let detailSaleOption of detailSalesSharedCollection; trackBy: trackDetailSaleById"
+            >
+              {{ detailSaleOption.productAmount }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['detailSale'])!.invalid && (editForm.get(['detailSale'])!.dirty || editForm.get(['detailSale'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['detailSale'])?.errors?.required"
+            panysoftTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.purchaseReceipt.client" for="field_client">Client</label>
+          <select class="form-control" id="field_client" data-cy="client" name="client" formControlName="client">
+            <option *ngIf="!editForm.get('client')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="clientOption.id === editForm.get('client')!.value?.id ? editForm.get('client')!.value : clientOption"
+              *ngFor="let clientOption of clientsSharedCollection; trackBy: trackClientById"
+            >
+              {{ clientOption.id }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['client'])!.invalid && (editForm.get(['client'])!.dirty || editForm.get(['client'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['client'])?.errors?.required"
+            panysoftTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

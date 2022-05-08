@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="detailOrder">
+      <h2 data-cy="detailOrderDetailsHeading"><span panysoftTranslate="panysoftApp.detailOrder.detail.title">Detail Order</span></h2>
+
+      <hr />
+
+      <panysoft-alert-error></panysoft-alert-error>
+
+      <panysoft-alert></panysoft-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span panysoftTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ detailOrder.id }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.detailOrder.quantityOrdered">Quantity Ordered</span></dt>
+        <dd>
+          <span>{{ detailOrder.quantityOrdered }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.detailOrder.date">Date</span></dt>
+        <dd>
+          <span>{{ detailOrder.date | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.detailOrder.invoiceNumber">Invoice Number</span></dt>
+        <dd>
+          <span>{{ detailOrder.invoiceNumber }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.detailOrder.productOrdered">Product Ordered</span></dt>
+        <dd>
+          <span>{{ detailOrder.productOrdered }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.detailOrder.pricePayment">Price Payment</span></dt>
+        <dd>
+          <span>{{ detailOrder.pricePayment }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.detailOrder.provider">Provider</span></dt>
+        <dd>
+          <div *ngIf="detailOrder.provider">
+            <a [routerLink]="['/provider', detailOrder.provider?.id, 'view']">{{ detailOrder.provider?.name }}</a>
+          </div>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.detailOrder.orderPlaced">Order Placed</span></dt>
+        <dd>
+          <div *ngIf="detailOrder.orderPlaced">
+            <a [routerLink]="['/order-placed', detailOrder.orderPlaced?.id, 'view']">{{ detailOrder.orderPlaced?.orderPlacedState }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/detail-order', detailOrder.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

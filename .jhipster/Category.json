@@ -1,0 +1,35 @@
+{
+  "applications": ["panysoft"],
+  "changelogDate": "20220507225337",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "category",
+  "fields": [
+    {
+      "fieldName": "nameCategory",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength", "unique"],
+      "fieldValidateRulesMaxlength": "30"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Category",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "productElaborated",
+      "otherEntityRelationshipName": "category",
+      "relationshipName": "productElaborated",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "recip",
+      "otherEntityRelationshipName": "category",
+      "relationshipName": "recip",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

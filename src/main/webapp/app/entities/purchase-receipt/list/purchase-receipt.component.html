@@ -1,0 +1,98 @@
+<div>
+  <h2 id="page-heading" data-cy="PurchaseReceiptHeading">
+    <span panysoftTranslate="panysoftApp.purchaseReceipt.home.title">Purchase Receipts</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span panysoftTranslate="panysoftApp.purchaseReceipt.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-purchase-receipt"
+        [routerLink]="['/purchase-receipt/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span panysoftTranslate="panysoftApp.purchaseReceipt.home.createLabel"> Create a new Purchase Receipt </span>
+      </button>
+    </div>
+  </h2>
+
+  <panysoft-alert-error></panysoft-alert-error>
+
+  <panysoft-alert></panysoft-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="purchaseReceipts?.length === 0">
+    <span panysoftTranslate="panysoftApp.purchaseReceipt.home.notFound">No purchaseReceipts found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="purchaseReceipts && purchaseReceipts.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span panysoftTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.purchaseReceipt.date">Date</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.purchaseReceipt.totalSale">Total Sale</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.purchaseReceipt.employee">Employee</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.purchaseReceipt.detailSale">Detail Sale</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.purchaseReceipt.client">Client</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let purchaseReceipt of purchaseReceipts; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/purchase-receipt', purchaseReceipt.id, 'view']">{{ purchaseReceipt.id }}</a>
+          </td>
+          <td>{{ purchaseReceipt.date | formatMediumDatetime }}</td>
+          <td>{{ purchaseReceipt.totalSale }}</td>
+          <td>
+            <div *ngIf="purchaseReceipt.employee">
+              <a [routerLink]="['/employee', purchaseReceipt.employee?.id, 'view']">{{ purchaseReceipt.employee?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="purchaseReceipt.detailSale">
+              <a [routerLink]="['/detail-sale', purchaseReceipt.detailSale?.id, 'view']">{{ purchaseReceipt.detailSale?.productAmount }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="purchaseReceipt.client">
+              <a [routerLink]="['/client', purchaseReceipt.client?.id, 'view']">{{ purchaseReceipt.client?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/purchase-receipt', purchaseReceipt.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" panysoftTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/purchase-receipt', purchaseReceipt.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" panysoftTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(purchaseReceipt)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" panysoftTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

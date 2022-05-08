@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="provider">
+      <h2 data-cy="providerDetailsHeading"><span panysoftTranslate="panysoftApp.provider.detail.title">Provider</span></h2>
+
+      <hr />
+
+      <panysoft-alert-error></panysoft-alert-error>
+
+      <panysoft-alert></panysoft-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span panysoftTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ provider.id }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.provider.email">Email</span></dt>
+        <dd>
+          <span>{{ provider.email }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.provider.adress">Adress</span></dt>
+        <dd>
+          <span>{{ provider.adress }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.provider.nit">Nit</span></dt>
+        <dd>
+          <span>{{ provider.nit }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.provider.name">Name</span></dt>
+        <dd>
+          <span>{{ provider.name }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.provider.phone">Phone</span></dt>
+        <dd>
+          <span>{{ provider.phone }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/provider', provider.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

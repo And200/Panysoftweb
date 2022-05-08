@@ -1,0 +1,28 @@
+{
+  "panysoftApp": {
+    "productElaborated": {
+      "home": {
+        "title": "Product Elaborateds",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Product Elaborated",
+        "createOrEditLabel": "Create or edit a Product Elaborated",
+        "notFound": "No Product Elaborateds found"
+      },
+      "created": "A new Product Elaborated is created with identifier {{ param }}",
+      "updated": "A Product Elaborated is updated with identifier {{ param }}",
+      "deleted": "A Product Elaborated is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Product Elaborated {{ id }}?"
+      },
+      "detail": {
+        "title": "Product Elaborated"
+      },
+      "id": "ID",
+      "amountProduced": "Amount Produced",
+      "productName": "Product Name",
+      "buyPrice": "Buy Price",
+      "detailSale": "Detail Sale",
+      "category": "Category"
+    }
+  }
+}

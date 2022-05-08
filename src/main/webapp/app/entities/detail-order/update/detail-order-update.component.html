@@ -1,0 +1,252 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="panysoft-detail-order-heading"
+        data-cy="DetailOrderCreateUpdateHeading"
+        panysoftTranslate="panysoftApp.detailOrder.home.createOrEditLabel"
+      >
+        Create or edit a Detail Order
+      </h2>
+
+      <div>
+        <panysoft-alert-error></panysoft-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" panysoftTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.detailOrder.quantityOrdered" for="field_quantityOrdered"
+            >Quantity Ordered</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="quantityOrdered"
+            id="field_quantityOrdered"
+            data-cy="quantityOrdered"
+            formControlName="quantityOrdered"
+          />
+          <div
+            *ngIf="
+              editForm.get('quantityOrdered')!.invalid &&
+              (editForm.get('quantityOrdered')!.dirty || editForm.get('quantityOrdered')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('quantityOrdered')?.errors?.required"
+              panysoftTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('quantityOrdered')?.errors?.number"
+              panysoftTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.detailOrder.date" for="field_date">Date</label>
+          <div class="d-flex">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="datetime-local"
+              class="form-control"
+              name="date"
+              formControlName="date"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('date')!.invalid && (editForm.get('date')!.dirty || editForm.get('date')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('date')?.errors?.required"
+              panysoftTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('date')?.errors?.ZonedDateTimelocal"
+              panysoftTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.detailOrder.invoiceNumber" for="field_invoiceNumber"
+            >Invoice Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="invoiceNumber"
+            id="field_invoiceNumber"
+            data-cy="invoiceNumber"
+            formControlName="invoiceNumber"
+          />
+          <div
+            *ngIf="
+              editForm.get('invoiceNumber')!.invalid && (editForm.get('invoiceNumber')!.dirty || editForm.get('invoiceNumber')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('invoiceNumber')?.errors?.required"
+              panysoftTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('invoiceNumber')?.errors?.maxlength"
+              panysoftTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 30 }"
+            >
+              This field cannot be longer than 30 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.detailOrder.productOrdered" for="field_productOrdered"
+            >Product Ordered</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="productOrdered"
+            id="field_productOrdered"
+            data-cy="productOrdered"
+            formControlName="productOrdered"
+          />
+          <div
+            *ngIf="
+              editForm.get('productOrdered')!.invalid && (editForm.get('productOrdered')!.dirty || editForm.get('productOrdered')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('productOrdered')?.errors?.required"
+              panysoftTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('productOrdered')?.errors?.maxlength"
+              panysoftTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 30 }"
+            >
+              This field cannot be longer than 30 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.detailOrder.pricePayment" for="field_pricePayment">Price Payment</label>
+          <input
+            type="number"
+            class="form-control"
+            name="pricePayment"
+            id="field_pricePayment"
+            data-cy="pricePayment"
+            formControlName="pricePayment"
+          />
+          <div
+            *ngIf="editForm.get('pricePayment')!.invalid && (editForm.get('pricePayment')!.dirty || editForm.get('pricePayment')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('pricePayment')?.errors?.required"
+              panysoftTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('pricePayment')?.errors?.number"
+              panysoftTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.detailOrder.provider" for="field_provider">Provider</label>
+          <select class="form-control" id="field_provider" data-cy="provider" name="provider" formControlName="provider">
+            <option *ngIf="!editForm.get('provider')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="providerOption.id === editForm.get('provider')!.value?.id ? editForm.get('provider')!.value : providerOption"
+              *ngFor="let providerOption of providersSharedCollection; trackBy: trackProviderById"
+            >
+              {{ providerOption.name }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['provider'])!.invalid && (editForm.get(['provider'])!.dirty || editForm.get(['provider'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['provider'])?.errors?.required"
+            panysoftTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.detailOrder.orderPlaced" for="field_orderPlaced">Order Placed</label>
+          <select class="form-control" id="field_orderPlaced" data-cy="orderPlaced" name="orderPlaced" formControlName="orderPlaced">
+            <option *ngIf="!editForm.get('orderPlaced')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="
+                orderPlacedOption.id === editForm.get('orderPlaced')!.value?.id ? editForm.get('orderPlaced')!.value : orderPlacedOption
+              "
+              *ngFor="let orderPlacedOption of orderPlacedsSharedCollection; trackBy: trackOrderPlacedById"
+            >
+              {{ orderPlacedOption.orderPlacedState }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['orderPlaced'])!.invalid && (editForm.get(['orderPlaced'])!.dirty || editForm.get(['orderPlaced'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['orderPlaced'])?.errors?.required"
+            panysoftTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+{
+  "panysoftApp": {
+    "StateDocument": {
+      "null": "",
+      "ACTIVE": "ACTIVO",
+      "INACTIVE": "INACTIVO"
+    }
+  }
+}

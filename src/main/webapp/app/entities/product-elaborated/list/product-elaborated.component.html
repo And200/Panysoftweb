@@ -1,0 +1,88 @@
+<div>
+  <h2 id="page-heading" data-cy="ProductElaboratedHeading">
+    <span panysoftTranslate="panysoftApp.productElaborated.home.title">Product Elaborateds</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span panysoftTranslate="panysoftApp.productElaborated.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-product-elaborated"
+        [routerLink]="['/product-elaborated/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span panysoftTranslate="panysoftApp.productElaborated.home.createLabel"> Create a new Product Elaborated </span>
+      </button>
+    </div>
+  </h2>
+
+  <panysoft-alert-error></panysoft-alert-error>
+
+  <panysoft-alert></panysoft-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="productElaborateds?.length === 0">
+    <span panysoftTranslate="panysoftApp.productElaborated.home.notFound">No productElaborateds found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="productElaborateds && productElaborateds.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span panysoftTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.productElaborated.amountProduced">Amount Produced</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.productElaborated.productName">Product Name</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.productElaborated.buyPrice">Buy Price</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.productElaborated.category">Category</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let productElaborated of productElaborateds; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/product-elaborated', productElaborated.id, 'view']">{{ productElaborated.id }}</a>
+          </td>
+          <td>{{ productElaborated.amountProduced }}</td>
+          <td>{{ productElaborated.productName }}</td>
+          <td>{{ productElaborated.buyPrice }}</td>
+          <td>
+            <div *ngIf="productElaborated.category">
+              <a [routerLink]="['/category', productElaborated.category?.id, 'view']">{{ productElaborated.category?.nameCategory }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/product-elaborated', productElaborated.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" panysoftTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/product-elaborated', productElaborated.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" panysoftTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(productElaborated)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" panysoftTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

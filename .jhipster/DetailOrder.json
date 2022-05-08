@@ -1,0 +1,60 @@
+{
+  "applications": ["panysoft"],
+  "changelogDate": "20220507230037",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "detail_order",
+  "fields": [
+    {
+      "fieldName": "quantityOrdered",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "invoiceNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required", "unique"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "productOrdered",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "pricePayment",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "DetailOrder",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "provider",
+      "otherEntityRelationshipName": "detailOrder",
+      "relationshipName": "provider",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "orderPlacedState",
+      "otherEntityName": "orderPlaced",
+      "otherEntityRelationshipName": "detailOrder",
+      "relationshipName": "orderPlaced",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "no"
+}

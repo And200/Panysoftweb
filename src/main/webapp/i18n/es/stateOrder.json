@@ -1,0 +1,9 @@
+{
+  "panysoftApp": {
+    "StateOrder": {
+      "null": "",
+      "DELIVERED": "ENTREGADO",
+      "UNDELIVERED": "NOENTREGADO"
+    }
+  }
+}

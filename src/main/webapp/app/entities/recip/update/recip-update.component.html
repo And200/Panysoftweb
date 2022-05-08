@@ -1,0 +1,170 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="panysoft-recip-heading" data-cy="RecipCreateUpdateHeading" panysoftTranslate="panysoftApp.recip.home.createOrEditLabel">
+        Create or edit a Recip
+      </h2>
+
+      <div>
+        <panysoft-alert-error></panysoft-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" panysoftTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.recip.nameRecip" for="field_nameRecip">Name Recip</label>
+          <input type="text" class="form-control" name="nameRecip" id="field_nameRecip" data-cy="nameRecip" formControlName="nameRecip" />
+          <div *ngIf="editForm.get('nameRecip')!.invalid && (editForm.get('nameRecip')!.dirty || editForm.get('nameRecip')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nameRecip')?.errors?.required"
+              panysoftTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nameRecip')?.errors?.maxlength"
+              panysoftTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 30 }"
+            >
+              This field cannot be longer than 30 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.recip.estimatedPricePreparation" for="field_estimatedPricePreparation"
+            >Estimated Price Preparation</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="estimatedPricePreparation"
+            id="field_estimatedPricePreparation"
+            data-cy="estimatedPricePreparation"
+            formControlName="estimatedPricePreparation"
+          />
+          <div
+            *ngIf="
+              editForm.get('estimatedPricePreparation')!.invalid &&
+              (editForm.get('estimatedPricePreparation')!.dirty || editForm.get('estimatedPricePreparation')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('estimatedPricePreparation')?.errors?.required"
+              panysoftTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('estimatedPricePreparation')?.errors?.number"
+              panysoftTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.recip.amountProductUsed" for="field_amountProductUsed"
+            >Amount Product Used</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="amountProductUsed"
+            id="field_amountProductUsed"
+            data-cy="amountProductUsed"
+            formControlName="amountProductUsed"
+          />
+          <div
+            *ngIf="
+              editForm.get('amountProductUsed')!.invalid &&
+              (editForm.get('amountProductUsed')!.dirty || editForm.get('amountProductUsed')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('amountProductUsed')?.errors?.required"
+              panysoftTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('amountProductUsed')?.errors?.number"
+              panysoftTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.recip.product" for="field_product">Product</label>
+          <select class="form-control" id="field_product" data-cy="product" name="product" formControlName="product">
+            <option *ngIf="!editForm.get('product')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="productOption.id === editForm.get('product')!.value?.id ? editForm.get('product')!.value : productOption"
+              *ngFor="let productOption of productsSharedCollection; trackBy: trackProductById"
+            >
+              {{ productOption.productName }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['product'])!.invalid && (editForm.get(['product'])!.dirty || editForm.get(['product'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['product'])?.errors?.required"
+            panysoftTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.recip.category" for="field_category">Category</label>
+          <select class="form-control" id="field_category" data-cy="category" name="category" formControlName="category">
+            <option *ngIf="!editForm.get('category')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="categoryOption.id === editForm.get('category')!.value?.id ? editForm.get('category')!.value : categoryOption"
+              *ngFor="let categoryOption of categoriesSharedCollection; trackBy: trackCategoryById"
+            >
+              {{ categoryOption.nameCategory }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['category'])!.invalid && (editForm.get(['category'])!.dirty || editForm.get(['category'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['category'])?.errors?.required"
+            panysoftTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

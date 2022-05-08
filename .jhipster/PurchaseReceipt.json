@@ -1,0 +1,49 @@
+{
+  "applications": ["panysoft"],
+  "changelogDate": "20220507225037",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "purchase_receipt",
+  "fields": [
+    {
+      "fieldName": "date",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "totalSale",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "PurchaseReceipt",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "employee",
+      "otherEntityRelationshipName": "purchaseReceipt",
+      "relationshipName": "employee",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "productAmount",
+      "otherEntityName": "detailSale",
+      "otherEntityRelationshipName": "purchaseReceipt",
+      "relationshipName": "detailSale",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "client",
+      "otherEntityRelationshipName": "purchaseReceipt",
+      "relationshipName": "client",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "no"
+}

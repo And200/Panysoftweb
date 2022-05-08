@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="productElaborated">
+      <h2 data-cy="productElaboratedDetailsHeading">
+        <span panysoftTranslate="panysoftApp.productElaborated.detail.title">Product Elaborated</span>
+      </h2>
+
+      <hr />
+
+      <panysoft-alert-error></panysoft-alert-error>
+
+      <panysoft-alert></panysoft-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span panysoftTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ productElaborated.id }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.productElaborated.amountProduced">Amount Produced</span></dt>
+        <dd>
+          <span>{{ productElaborated.amountProduced }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.productElaborated.productName">Product Name</span></dt>
+        <dd>
+          <span>{{ productElaborated.productName }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.productElaborated.buyPrice">Buy Price</span></dt>
+        <dd>
+          <span>{{ productElaborated.buyPrice }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.productElaborated.category">Category</span></dt>
+        <dd>
+          <div *ngIf="productElaborated.category">
+            <a [routerLink]="['/category', productElaborated.category?.id, 'view']">{{ productElaborated.category?.nameCategory }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/product-elaborated', productElaborated.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

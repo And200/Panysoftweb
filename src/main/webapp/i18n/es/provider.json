@@ -1,0 +1,30 @@
+{
+  "panysoftApp": {
+    "provider": {
+      "home": {
+        "title": "Providers",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Provider",
+        "createOrEditLabel": "Crear o editar Provider",
+        "notFound": "Ningún Providers encontrado"
+      },
+      "created": "Un nuevo Provider ha sido creado con el identificador {{ param }}",
+      "updated": "Un Provider ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Provider ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Provider {{ id }}?"
+      },
+      "detail": {
+        "title": "Provider"
+      },
+      "id": "ID",
+      "email": "Email",
+      "adress": "Adress",
+      "nit": "Nit",
+      "name": "Name",
+      "phone": "Phone",
+      "product": "Product",
+      "detailOrder": "Detail Order"
+    }
+  }
+}

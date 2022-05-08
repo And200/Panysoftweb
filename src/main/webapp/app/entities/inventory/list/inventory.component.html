@@ -1,0 +1,86 @@
+<div>
+  <h2 id="page-heading" data-cy="InventoryHeading">
+    <span panysoftTranslate="panysoftApp.inventory.home.title">Inventories</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span panysoftTranslate="panysoftApp.inventory.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-inventory"
+        [routerLink]="['/inventory/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span panysoftTranslate="panysoftApp.inventory.home.createLabel"> Create a new Inventory </span>
+      </button>
+    </div>
+  </h2>
+
+  <panysoft-alert-error></panysoft-alert-error>
+
+  <panysoft-alert></panysoft-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="inventories?.length === 0">
+    <span panysoftTranslate="panysoftApp.inventory.home.notFound">No inventories found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="inventories && inventories.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span panysoftTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.inventory.stocks">Stocks</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.inventory.buyPrice">Buy Price</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.inventory.product">Product</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let inventory of inventories; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/inventory', inventory.id, 'view']">{{ inventory.id }}</a>
+          </td>
+          <td>{{ inventory.stocks }}</td>
+          <td>{{ inventory.buyPrice }}</td>
+          <td>
+            <div *ngIf="inventory.product">
+              <a [routerLink]="['/product', inventory.product?.id, 'view']">{{ inventory.product?.productName }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/inventory', inventory.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" panysoftTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/inventory', inventory.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" panysoftTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(inventory)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" panysoftTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

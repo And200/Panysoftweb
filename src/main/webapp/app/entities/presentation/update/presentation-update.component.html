@@ -1,0 +1,95 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="panysoft-presentation-heading"
+        data-cy="PresentationCreateUpdateHeading"
+        panysoftTranslate="panysoftApp.presentation.home.createOrEditLabel"
+      >
+        Create or edit a Presentation
+      </h2>
+
+      <div>
+        <panysoft-alert-error></panysoft-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" panysoftTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.presentation.presentation" for="field_presentation">Presentation</label>
+          <input
+            type="text"
+            class="form-control"
+            name="presentation"
+            id="field_presentation"
+            data-cy="presentation"
+            formControlName="presentation"
+          />
+          <div
+            *ngIf="editForm.get('presentation')!.invalid && (editForm.get('presentation')!.dirty || editForm.get('presentation')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('presentation')?.errors?.required"
+              panysoftTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('presentation')?.errors?.maxlength"
+              panysoftTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 30 }"
+            >
+              This field cannot be longer than 30 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.presentation.measureUnit" for="field_measureUnit">Measure Unit</label>
+          <select class="form-control" id="field_measureUnit" data-cy="measureUnit" name="measureUnit" formControlName="measureUnit">
+            <option *ngIf="!editForm.get('measureUnit')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="
+                measureUnitOption.id === editForm.get('measureUnit')!.value?.id ? editForm.get('measureUnit')!.value : measureUnitOption
+              "
+              *ngFor="let measureUnitOption of measureUnitsSharedCollection; trackBy: trackMeasureUnitById"
+            >
+              {{ measureUnitOption.nameUnit }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['measureUnit'])!.invalid && (editForm.get(['measureUnit'])!.dirty || editForm.get(['measureUnit'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['measureUnit'])?.errors?.required"
+            panysoftTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

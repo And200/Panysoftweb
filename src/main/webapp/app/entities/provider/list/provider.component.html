@@ -1,0 +1,86 @@
+<div>
+  <h2 id="page-heading" data-cy="ProviderHeading">
+    <span panysoftTranslate="panysoftApp.provider.home.title">Providers</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span panysoftTranslate="panysoftApp.provider.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-provider"
+        [routerLink]="['/provider/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span panysoftTranslate="panysoftApp.provider.home.createLabel"> Create a new Provider </span>
+      </button>
+    </div>
+  </h2>
+
+  <panysoft-alert-error></panysoft-alert-error>
+
+  <panysoft-alert></panysoft-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="providers?.length === 0">
+    <span panysoftTranslate="panysoftApp.provider.home.notFound">No providers found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="providers && providers.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span panysoftTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.provider.email">Email</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.provider.adress">Adress</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.provider.nit">Nit</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.provider.name">Name</span></th>
+          <th scope="col"><span panysoftTranslate="panysoftApp.provider.phone">Phone</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let provider of providers; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/provider', provider.id, 'view']">{{ provider.id }}</a>
+          </td>
+          <td>{{ provider.email }}</td>
+          <td>{{ provider.adress }}</td>
+          <td>{{ provider.nit }}</td>
+          <td>{{ provider.name }}</td>
+          <td>{{ provider.phone }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/provider', provider.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" panysoftTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/provider', provider.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" panysoftTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(provider)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" panysoftTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="documentType">
+      <h2 data-cy="documentTypeDetailsHeading"><span panysoftTranslate="panysoftApp.documentType.detail.title">Document Type</span></h2>
+
+      <hr />
+
+      <panysoft-alert-error></panysoft-alert-error>
+
+      <panysoft-alert></panysoft-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span panysoftTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ documentType.id }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.documentType.documentName">Document Name</span></dt>
+        <dd>
+          <span>{{ documentType.documentName }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.documentType.initials">Initials</span></dt>
+        <dd>
+          <span>{{ documentType.initials }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.documentType.stateDocumentType">State Document Type</span></dt>
+        <dd>
+          <span panysoftTranslate="{{ 'panysoftApp.StateDocument.' + documentType.stateDocumentType }}">{{
+            documentType.stateDocumentType
+          }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/document-type', documentType.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

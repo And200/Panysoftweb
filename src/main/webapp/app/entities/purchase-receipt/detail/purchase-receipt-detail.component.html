@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="purchaseReceipt">
+      <h2 data-cy="purchaseReceiptDetailsHeading">
+        <span panysoftTranslate="panysoftApp.purchaseReceipt.detail.title">Purchase Receipt</span>
+      </h2>
+
+      <hr />
+
+      <panysoft-alert-error></panysoft-alert-error>
+
+      <panysoft-alert></panysoft-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span panysoftTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ purchaseReceipt.id }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.purchaseReceipt.date">Date</span></dt>
+        <dd>
+          <span>{{ purchaseReceipt.date | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.purchaseReceipt.totalSale">Total Sale</span></dt>
+        <dd>
+          <span>{{ purchaseReceipt.totalSale }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.purchaseReceipt.employee">Employee</span></dt>
+        <dd>
+          <div *ngIf="purchaseReceipt.employee">
+            <a [routerLink]="['/employee', purchaseReceipt.employee?.id, 'view']">{{ purchaseReceipt.employee?.id }}</a>
+          </div>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.purchaseReceipt.detailSale">Detail Sale</span></dt>
+        <dd>
+          <div *ngIf="purchaseReceipt.detailSale">
+            <a [routerLink]="['/detail-sale', purchaseReceipt.detailSale?.id, 'view']">{{ purchaseReceipt.detailSale?.productAmount }}</a>
+          </div>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.purchaseReceipt.client">Client</span></dt>
+        <dd>
+          <div *ngIf="purchaseReceipt.client">
+            <a [routerLink]="['/client', purchaseReceipt.client?.id, 'view']">{{ purchaseReceipt.client?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/purchase-receipt', purchaseReceipt.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

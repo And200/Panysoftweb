@@ -1,0 +1,28 @@
+{
+  "panysoftApp": {
+    "purchaseReceipt": {
+      "home": {
+        "title": "Purchase Receipts",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Purchase Receipt",
+        "createOrEditLabel": "Crear o editar Purchase Receipt",
+        "notFound": "Ningún Purchase Receipts encontrado"
+      },
+      "created": "Un nuevo Purchase Receipt ha sido creado con el identificador {{ param }}",
+      "updated": "Un Purchase Receipt ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Purchase Receipt ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Purchase Receipt {{ id }}?"
+      },
+      "detail": {
+        "title": "Purchase Receipt"
+      },
+      "id": "ID",
+      "date": "Date",
+      "totalSale": "Total Sale",
+      "employee": "Employee",
+      "detailSale": "Detail Sale",
+      "client": "Client"
+    }
+  }
+}

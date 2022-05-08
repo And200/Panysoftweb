@@ -1,0 +1,28 @@
+{
+  "panysoftApp": {
+    "productElaborated": {
+      "home": {
+        "title": "Product Elaborateds",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Product Elaborated",
+        "createOrEditLabel": "Crear o editar Product Elaborated",
+        "notFound": "Ningún Product Elaborateds encontrado"
+      },
+      "created": "Un nuevo Product Elaborated ha sido creado con el identificador {{ param }}",
+      "updated": "Un Product Elaborated ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Product Elaborated ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Product Elaborated {{ id }}?"
+      },
+      "detail": {
+        "title": "Product Elaborated"
+      },
+      "id": "ID",
+      "amountProduced": "Amount Produced",
+      "productName": "Product Name",
+      "buyPrice": "Buy Price",
+      "detailSale": "Detail Sale",
+      "category": "Category"
+    }
+  }
+}

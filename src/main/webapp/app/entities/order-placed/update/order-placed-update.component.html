@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="panysoft-order-placed-heading"
+        data-cy="OrderPlacedCreateUpdateHeading"
+        panysoftTranslate="panysoftApp.orderPlaced.home.createOrEditLabel"
+      >
+        Create or edit a Order Placed
+      </h2>
+
+      <div>
+        <panysoft-alert-error></panysoft-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" panysoftTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" panysoftTranslate="panysoftApp.orderPlaced.orderPlacedState" for="field_orderPlacedState"
+            >Order Placed State</label
+          >
+          <select
+            class="form-control"
+            name="orderPlacedState"
+            formControlName="orderPlacedState"
+            id="field_orderPlacedState"
+            data-cy="orderPlacedState"
+          >
+            <option [ngValue]="null">{{ 'panysoftApp.StateOrder.null' | translate }}</option>
+            <option *ngFor="let stateOrder of stateOrderValues" [value]="stateOrder">
+              {{ 'panysoftApp.StateOrder.' + stateOrder | translate }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('orderPlacedState')!.invalid &&
+              (editForm.get('orderPlacedState')!.dirty || editForm.get('orderPlacedState')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('orderPlacedState')?.errors?.required"
+              panysoftTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

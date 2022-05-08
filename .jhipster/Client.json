@@ -1,0 +1,30 @@
+{
+  "applications": ["panysoft"],
+  "changelogDate": "20220507224837",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "client",
+  "fields": [],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Client",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "purchaseReceipt",
+      "otherEntityRelationshipName": "client",
+      "relationshipName": "purchaseReceipt",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "person",
+      "otherEntityRelationshipName": "client",
+      "relationshipName": "person",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "no"
+}

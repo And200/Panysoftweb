@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="presentation">
+      <h2 data-cy="presentationDetailsHeading"><span panysoftTranslate="panysoftApp.presentation.detail.title">Presentation</span></h2>
+
+      <hr />
+
+      <panysoft-alert-error></panysoft-alert-error>
+
+      <panysoft-alert></panysoft-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span panysoftTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ presentation.id }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.presentation.presentation">Presentation</span></dt>
+        <dd>
+          <span>{{ presentation.presentation }}</span>
+        </dd>
+        <dt><span panysoftTranslate="panysoftApp.presentation.measureUnit">Measure Unit</span></dt>
+        <dd>
+          <div *ngIf="presentation.measureUnit">
+            <a [routerLink]="['/measure-unit', presentation.measureUnit?.id, 'view']">{{ presentation.measureUnit?.nameUnit }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/presentation', presentation.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span panysoftTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
