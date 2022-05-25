@@ -32,9 +32,9 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://panysoftdatabase.mysql.database.azure.com:3306/panysoft?useUnicode=true&characterEncoding=utf8&useSSL=true&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
-    username: anderson
-    password: Panysoft2022
+    url: jdbc:mysql://panysoft-database.cabm3wlld3tt.us-east-1.rds.amazonaws.com:3306/panysoft?useUnicode=true&characterEncoding=utf8&useSSL=true&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+    username: admin
+    password: nosredna20022
     hikari:
       poolName: Hikari
       auto-commit: false
